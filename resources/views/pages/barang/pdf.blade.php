@@ -114,12 +114,12 @@
                         </div>
                         <div class="d-flex justify-content-between my-5">
                             <div>
-                                <p class="p-0 m-0">Petugas Yang Menyerahkan</p>
+                                <p class="p-0 m-0">Pegawai Yang Menyerahkan</p>
                                 <p class="p-0 mb-5">{{ ucwords(auth()->user()->name) }}</p>
-                                <p class="p-0 m-0">NIP : {{ ucwords(auth()->user()->nip) }}</p>
+                                <p class="p-0 m-0">NAK - NIK : {{ ucwords(auth()->user()->nip) }}</p>
                             </div>
                             <div>
-                                <p class="p-0 m-0">Bondowoso,{{ date('d M Y', strtotime(now())) }}</p>
+                                <p class="p-0 m-0">Gresik,{{ date('d M Y', strtotime(now())) }}</p>
                                 <p class="p-0 m-0">Penerima Laporan</p>
                                 <p class="p-0 m-0">Telah Di Teliti dan Hitung</p>
                             </div>
