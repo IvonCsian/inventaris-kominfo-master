@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_jenis')->constrained('jenis_kategori')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('nama')->nullable();
-            $table->enum('status', ['roda-4','roda-2']);
+            $table->enum('status', ['roda4','roda2']);
             $table->timestamps();
         });
     }

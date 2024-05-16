@@ -65,7 +65,7 @@
                                     <div class="mx-1">
                                       <div class="form-check">
                                         <label class="form-check-label">
-                                          <input type="radio" class="form-check-input" name="status" id="membershipRadios1" value="roda 4" checked>
+                                          <input type="radio" class="form-check-input" name="status" id="membershipRadios1" value="roda4" checked>
                                           Roda 4+
                                         </label>
                                       </div>
@@ -73,7 +73,7 @@
                                     <div class="mx-1">
                                       <div class="form-check">
                                         <label class="form-check-label">
-                                          <input type="radio" class="form-check-input" name="status" id="membershipRadios2" value="roda 2">
+                                          <input type="radio" class="form-check-input" name="status" id="membershipRadios2" value="roda2">
                                           Roda 2
                                         </label>
                                       </div>
