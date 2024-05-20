@@ -105,7 +105,7 @@
                                 <select name="kategori" class="form-control js-example-basic-single w-100">
                                     <option value="0">Pilih Kategori</option>
                                     @foreach ($kategori as $item)
-                                        <option value="{{ $item->id }}" {{ $data->id_kategori == $item->id ? 'selected' : '' }}>{{ ucwords($item->nama) }}</option>
+                                        <option value="{{ $item->id }}" {{ $data->id_kategori == $item->id ? 'selected' : '' }}>{{ ucwords($item->nama) }}{{ ucwords($item->status) }}</option>
                                     @endforeach
                                 </select>
                                 @error('kategori')

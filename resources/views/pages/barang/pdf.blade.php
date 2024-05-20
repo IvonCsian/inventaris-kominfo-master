@@ -86,7 +86,8 @@
                                   <tr>
                                     <th>#</th>
                                     <th>Nomor Polisi</th>
-                                    <th>Kategori Barang</th>
+                                    <th>Kategori Kendaraan</th>
+                                    <th>Status Kendaraan</th>
                                     <th>Muatan</th>
                                     <th>Jumlah Penumpang</th>
                                     <th>Meteran Akhir</th>
@@ -99,6 +100,7 @@
                                           <td>{{ $loop->iteration }}</td>
                                           <td>{{ ucwords($item->nama_barang) }}</td>
                                           <td>{{ ucwords($item->kategori->nama) }}</td>
+                                          <td>{{ ucwords($item->kategori->status) }}</td>
                                           <td>{{ ucwords($item->merk) }}</td>
                                           <td>{{ ucwords($item->jumlah_barang) }}</td>
                                           <td>Rp . {{ number_format($item->harga_barang,2, ",", ".") }}</td>

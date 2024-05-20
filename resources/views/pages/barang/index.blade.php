@@ -92,7 +92,7 @@
                                   <th>No</th>
                                   <th>NAK - NIK</th>
                                   <th>Nomor Polisi</th>
-                                  <th>Kategori Barang</th>
+                                  <th>Kategori Kendaraan</th>
                                   <th>Muatan</th>
                                   <th>Jumlah Penumpang</th>
                                   <th>Meteran Akhir</th>
