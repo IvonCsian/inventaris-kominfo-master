@@ -76,6 +76,17 @@ class BarangController extends Controller
             'jumlah_barang' => 'required',
             'harga_barang' => 'required',
             'gambar_konten' => 'required',
+        ],[
+            'nip.required' => "NAK - NIK Tidak Boleh Kosong!",
+            'name.required' => "Nomor Polisi Kendaraan Tidak Boleh Kosong!",
+            'merk.required' => "Muatan Kendaraan Tidak Boleh Kosong!",
+            'bahan.required' => "Kondisi Oli dan Radiator Kendaraan Tidak Boleh Kosong!",
+            'ukuran.required' => "Kondisi Rem dan Lampu Kendaraan Tidak Boleh Kosong!",
+            'tahun.required' => "Masa Berlaku STNK Kendaraan Tidak Boleh Kosong!",
+            'asal_barang.required' => "Kondisi Ban dan Wipper Kendaraan Tidak Boleh Kosong!",
+            'kondisi_barang.required' => "Kondisi Klakson Tidak Boleh Kosong!",
+            'jumlah_barang.required' => "Jumlah Penumpang Tidak Boleh Kosong!",
+            'harga_barang.required' => "Meteran Akhir Kendaraan Tidak Boleh Kosong!",
         ]);
         try {
             $barang = new Barang;

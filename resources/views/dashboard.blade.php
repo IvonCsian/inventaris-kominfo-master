@@ -106,7 +106,7 @@
                                 @endforeach
                             @else
                                 @php
-                                    $user = \App\Models\User::find($item->causer_id)->first()->email;
+                                  
                                     $createdAt = $item->created_at;
                                     $now = \Carbon\Carbon::now();
                                     $difference = $createdAt->diffForHumans();
@@ -114,7 +114,7 @@
                                 @endphp
                                 <li>
                                 <div class="d-flex justify-content-between">
-                                    <div><span class="text-light-green" style="color: #224BCA">{{ ucwords($user) }} </span><strong>{{ $item->description }}</strong> data <strong>{{ $item->log_name }}</strong> </div>
+                                    <div><span class="text-light-green" style="color: #224BCA">{{ ucwords($item->user) }} </span><strong>{{ $item->description }}</strong> data <strong>{{ $item->log_name }}</strong> </div>
                                     <p>{{  $difference }}</p>
                                 </div>
                                 </li>

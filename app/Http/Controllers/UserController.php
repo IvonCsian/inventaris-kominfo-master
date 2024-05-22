@@ -56,6 +56,10 @@ class UserController extends Controller
             'password' => 'required',
             'jabatan' => 'required',
             'jabatan_keanggotaan' => 'required',
+        ],[
+            'nip.required' => "NAK - NIK Tidak Boleh Kosong!",
+            'name.required' => "Nama Tidak Boleh Kosong!",
+            'jabatan.required' => "Departemen - Bagian Tidak Boleh Kosong!",
         ]);
         try {
             $user = new User;

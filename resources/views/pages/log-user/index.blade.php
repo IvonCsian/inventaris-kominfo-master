@@ -71,7 +71,7 @@
                                             @php
                                                 $user = \App\Models\User::find($item->causer_id)->first()->email;
                                             @endphp
-                                            <td>{{ $user }}</td>
+                                            <td>{{ $item->user }}</td>
                                             {{-- <td>{{ date('d M Y - H:i:s', strtotime($item->created_at )) }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
