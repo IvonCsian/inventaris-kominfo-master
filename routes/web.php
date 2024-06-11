@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LogUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\kendaraanController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -40,7 +41,11 @@ Route::middleware('auth')->group(function () {
     Route::get('log-user',[LogUserController::class,'loguser'])->name('log.user');
     // history barang
     Route::get('history-barang',[HistoryBarangController::class, 'history'])->name('history.barang');
-
+    // kendaraan
+    Route::get('pdf',[kendaraanController::class,'pdfDownload'])->name('kendaraan.pdf');
+    Route::delete('{id}/delete-permanent-kendaraan', [kendaraanController::class, 'deletePermanent'])->name('kendaraan.deletePermanent');
+    Route::post('{id}/restore-kendaraan',[kendaraanController::class,'restore'])->name('kendaraan.restore');
+    Route::resource('kendaraan', kendaraanController::class);
 });
 
 require __DIR__.'/auth.php';
