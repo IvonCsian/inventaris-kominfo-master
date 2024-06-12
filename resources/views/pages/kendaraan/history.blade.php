@@ -68,7 +68,7 @@
                                                     <td>
                                                         @foreach ($update as $item)
                                                         @foreach ($item->properties as $key => $itemO)
-                                                            {{-- <td>{{ $itemO['nama_barang'] }}</td> --}}
+                                                            {{-- <td>{{ $itemO['jenis'] }}</td> --}}
                                                             @foreach ($itemO as $keyp=> $itemP)
                                                             <div class="py-2">
                                                                <p style="font-size:14px"><strong>{{ ucwords(str_replace("_", " ",$keyp)) }} :</strong> {{ $itemP }}</p>
@@ -106,12 +106,10 @@
                                                 <th>Status</th>
                                                 <th>Tanggal Update</th>
                                                 <th>NAK - NIK</th>
-                                                <th>Nama Anggota</th>
                                                 <th>Nomor Polisi</th>
-                                                <th>Masa Berlaku STNK Kendaraan</th>
-                                                <th>Muatan</th>
-                                                <th>Jumlah Penumpang</th>
-                                                <th>Meteran Akhir</th>
+                                                <th>Kategori Kendaraan</th>
+                                                <th>Status Kendaraan</th>
+                                                <th>Merk Jenis Kendaraan</th>
                                                 <th>Masa Berlaku STNK</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -123,16 +121,14 @@
                                                         <span class="badge badge-danger">Delete</span>
                                                     </td>
                                                     <td>{{ $item->deleted_at }}</td>
-                                                    <td>{{ $item->nipb }}</td>
-                                                    <td>{{ $item->nama_barang }}</td>
-                                                    <td>{{ $item->kendaraan->nopol }}</td>
-                                                    <td>{{ $item->kendaraan->stnk }}</td>
-                                                    <td>{{ $item->merk }}</td>
-                                                    <td>{{ $item->jumlah_barang }}</td>
-                                                    <td>Rp . {{ number_format($item->harga_barang,2, ",", ".") }}</td>
-                                                    <td>{{ date('d M Y', strtotime($item->tahun )) }}</td>
+                                                    <td>{{ $item->nipk }}</td>
+                                                    <td>{{ $item->nopol }}</td>
+                                                    <td>{{ $item->kategori->nama }}</td>
+                                                    <td>{{ $item->kategori->status }}</td>
+                                                    <td>{{ $item->jenis }}</td>
+                                                    <td>{{ date('d M Y', strtotime($item->stnk )) }}</td>
                                                     <td>
-                                                    <form action="{{ route('barang.restore',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('return data ?')">
+                                                    <form action="{{ route('kendaraan.restore',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('return data ?')">
                                                         @csrf
                                                         <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Ganti Status"><i class="mdi mdi-backup-restore"></i></button>
                                                     </form>

@@ -17,7 +17,7 @@ class Barang extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'id_kategori',
+        'id_kendaraan',
         'nama_barang',
         'merk',
         'ukuran',
@@ -32,9 +32,9 @@ class Barang extends Model
         'id_user',
 
     ];
-    public function kategori()
+    public function kendaraan()
     {
-        return $this->belongsTo(Kategori::class,'id_kategori','id');
+        return $this->belongsTo(kendaraan::class,'id_kendaraan','id');
 
     }
     public function user()

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_kategori')->constrained('kategori')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('id_kendaraan')->constrained('kendaraan')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('nama_barang');
             $table->string('merk')->nullable();
             $table->string('ukuran')->nullable();
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->enum('is_active', [1, 0])->default(true)->comment('0:false; 1:true');
             $table->timestamps();
             $table->softDeletes();
+            $table->string('nipb',50)->nullable();
         });
     }
 

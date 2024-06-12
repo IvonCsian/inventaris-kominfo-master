@@ -80,16 +80,16 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputUsername1">NAK - NIK <span class="text-danger">*</span></label>
-                                <input type="text" name="nip" value="{{ old('nip') }}" class="form-control @error('nip') is-invalid @enderror" id="exampleInputUsernip1" placeholder="Masukkan NAK - NIK">
-                                  @error('nip')
+                                <input type="text" name="nipb" value="{{ old('nipb') }}" class="form-control @error('nipb') is-invalid @enderror" id="exampleInputUsernip1" placeholder="Masukkan NAK - NIK">
+                                  @error('nipb')
                                   <small class="text-danger" style="font-size: 12px">
                                       {{ $message }}.
                                   </small>
                                   @enderror
                             </div>
                             <div class="form-group">
-                              <label for="exampleInputUsername1">Nomor Polisi <span class="text-danger">*</span></label>
-                              <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Nomor Polisi">
+                              <label for="exampleInputUsername1">Nama Anggota <span class="text-danger">*</span></label>
+                              <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Nama Anggota">
                                 @error('name')
                                 <small class="text-danger" style="font-size: 12px">
                                     {{ $message }}.
@@ -98,14 +98,14 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputUsername1">Kategori <span class="text-danger">*</span></label>
-                                <select name="kategori" class="form-control js-example-basic-single w-100">
-                                    <option value="0">Pilih Kategori</option>
-                                    @foreach ($kategori as $item)
-                                        <option value="{{ $item->id }}">{{ ucwords($item->nama) }} {{ ucwords($item->status) }}</option>
+                                <label for="exampleInputUsername1">Kendaraan <span class="text-danger">*</span></label>
+                                <select name="kendaraan" class="form-control js-example-basic-single w-100">
+                                    <option value="0">Pilih Kendaraan</option>
+                                    @foreach ($kendaraan as $item)
+                                        <option value="{{ $item->id }}">{{ ucwords($item->nopol) }} {{ ucwords($item->stnk) }}</option>
                                     @endforeach
                                 </select>
-                                @error('kategori')
+                                @error('kendaraan')
                                 <small class="text-danger" style="font-size: 12px">
                                     {{ $message }}.
                                 </small>
@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputUsername1">Masa Berlaku STNK <span class="text-danger">*</span></label>
+                                        <label for="exampleInputUsername1">Tanggal Hari ini <span class="text-danger">*</span></label>
                                         <input type="text" data-provide="tahun" name="tahun" value="{{ old('tahun') }}" class="form-control tahun @error('tahun') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Masa Berlaku STNK">
                                           @error('tahun')
                                           <small class="text-danger" style="font-size: 12px">

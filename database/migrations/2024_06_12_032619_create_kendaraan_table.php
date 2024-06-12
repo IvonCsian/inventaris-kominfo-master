@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreignId('id_kategori')->constrained('kategori')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('stnk');
             $table->timestamps();
+            $table->foreignId('id_user')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('is_active', [1, 0])->default(true)->comment('0:false; 1:true');
+            $table->softDeletes();
+            $table->string('nipk',50)->nullable();
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\kendaraan;
+use App\Models\barang;
 use App\Models\Kategori;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -28,17 +29,17 @@ class kendaraanController extends Controller
         }
         $data['data'] = kendaraan::latest()->when($request->get('tahun'),function ($query) use ($request)
                     {
-                        $query->whereYear('tahun',$request->get('tahun'));
+                        $query->whereYear('stnk',$request->get('tahun'));
 
                     })
                     ->when($request->get('bulan'),function ($query) use ($request)
                     {
-                        $query->whereMonth('tahun',$request->get('bulan'));
+                        $query->whereMonth('stnk',$request->get('bulan'));
 
                     })
                     // ->withTrashed()
                     ->latest()
-                    ->paginate(2)
+                    ->paginate(10)
                     ->withQueryString();
         return view('pages.kendaraan.index',$data);
     }
@@ -68,11 +69,13 @@ class kendaraanController extends Controller
             'jenis' => 'required',
             'kategori' => 'required|not_in:0',
             'stnk' => 'required',
+            'nipk' => 'required',
         ],[
             'nopol.required' => "Nomor Polisi Tidak Boleh Kosong!",
             'jenis.required' => "Jenis Merk Kendaraan Tidak Boleh Kosong!",
             'kategori.required' => "Kategori Kendaraan Tidak Boleh Kosong!",
             'stnk.required' => "Masa Berlaku STNK Kendaraan Tidak Boleh Kosong!",
+            'nipk.required' => "Masa NAK - NIK Tidak Boleh Kosong!",
         ]);
         try {
             $kendaraan = new kendaraan;
@@ -80,6 +83,7 @@ class kendaraanController extends Controller
             $kendaraan->jenis = $request->get('jenis');
             $kendaraan->id_kategori = $request->get('kategori');
             $kendaraan->stnk = $request->get('stnk');
+            $kendaraan->nipk = $request->get('nipk');
             $kendaraan->updated_at = null;
             $kendaraan->id_user = Auth::user()->id;
             $kendaraan->save();
@@ -131,6 +135,7 @@ class kendaraanController extends Controller
             'jenis' => 'required',
             'kategori' => 'required|not_in:0',
             'stnk' => 'required',
+            'nipk' => 'required',
         ]);
         try{
             $kendaraan = kendaraan::withTrashed()->find($id);
@@ -138,6 +143,7 @@ class kendaraanController extends Controller
             $kendaraan->jenis = $request->get('jenis');
             $kendaraan->id_kategori = $request->get('kategori');
             $kendaraan->stnk = $request->get('stnk');
+            $kendaraan->nipk = $request->get('nipk');
             $kendaraan->updated_at = now();
             $kendaraan->id_user = Auth::user()->id;
             $kendaraan->update();
@@ -168,17 +174,18 @@ class kendaraanController extends Controller
     }
     public function pdfDownload(Request $request)
     {
+        
         $data = kendaraan::latest();
 
         if (Session::has('bulan') || Session::has('tahun')) {
             $query = $data->when($request->session()->has('tahun'),function ($query) use ($request)
                      {
-                         $query->whereYear('tahun',$request->session()->get('tahun'));
+                         $query->whereYear('stnk',$request->session()->get('tahun'));
 
                      })
                      ->when($request->session()->has('bulan'),function ($query) use ($request)
                      {
-                         $query->whereMonth('tahun',$request->session()->get('bulan'));
+                         $query->whereMonth('stnk',$request->session()->get('bulan'));
 
                      })
                      ->get();

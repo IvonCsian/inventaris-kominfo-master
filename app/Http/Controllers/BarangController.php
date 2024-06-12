@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
-use App\Models\Kategori;
+use App\Models\kendaraan;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -38,7 +38,7 @@ class BarangController extends Controller
                     })
                     // ->withTrashed()
                     ->latest()
-                    ->paginate(2)
+                    ->paginate(10)
                     ->withQueryString();
         return view('pages.barang.index',$data);
     }
@@ -51,7 +51,7 @@ class BarangController extends Controller
     public function create()
     {
         $data['title'] = 'Tambah data barang';
-        $data['kategori'] = Kategori::latest()->get();
+        $data['kendaraan'] = Kendaraan::latest()->get();
         return view('pages.barang.create',$data);
     }
 
@@ -64,9 +64,9 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip' => 'required|max:16',
+            'nipb' => 'required|max:50',
             'name' => 'required',
-            'kategori' => 'required|not_in:0',
+            'kendaraan' => 'required|not_in:0',
             'merk' => 'required',
             'bahan' => 'required',
             'ukuran' => 'required',
@@ -77,8 +77,8 @@ class BarangController extends Controller
             'harga_barang' => 'required',
             'gambar_konten' => 'required',
         ],[
-            'nip.required' => "NAK - NIK Tidak Boleh Kosong!",
-            'name.required' => "Nomor Polisi Kendaraan Tidak Boleh Kosong!",
+            'nipb.required' => "NAK - NIK Tidak Boleh Kosong!",
+            'name.required' => "Nama Anggota Tidak Boleh Kosong!",
             'merk.required' => "Muatan Kendaraan Tidak Boleh Kosong!",
             'bahan.required' => "Kondisi Oli dan Radiator Kendaraan Tidak Boleh Kosong!",
             'ukuran.required' => "Kondisi Rem dan Lampu Kendaraan Tidak Boleh Kosong!",
@@ -91,8 +91,8 @@ class BarangController extends Controller
         try {
             $barang = new Barang;
             $barang->nama_barang = $request->get('name');
-            $barang->nip = $request->get('nip');
-            $barang->id_kategori = $request->get('kategori');
+            $barang->nipb = $request->get('nipb');
+            $barang->id_kendaraan = $request->get('kendaraan');
             $barang->merk = $request->get('merk');
             $barang->ukuran = $request->get('ukuran');
             $barang->bahan = $request->get('bahan');
@@ -144,7 +144,7 @@ class BarangController extends Controller
         $data['title'] = 'Edit Barang';
         // $data['data'] = Barang::withTrashed()->find($id);
         $data['data'] = Barang::find($id);
-        $data['kategori'] = Kategori::latest()->get();
+        $data['kendaraan'] = kendaraan::latest()->get();
         return view('pages.barang.edit',$data);
     }
 
@@ -158,9 +158,9 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nip' => 'required|max:16',
+            'nipb' => 'required|max:50',
             'name' => 'required',
-            'kategori' => 'required|not_in:0',
+            'kendaraan' => 'kendaraan|not_in:0',
             'bahan' => 'required',
             'ukuran' => 'required',
             'tahun' => 'required',
@@ -172,7 +172,7 @@ class BarangController extends Controller
         try{
             $barang = Barang::withTrashed()->find($id);
             $barang->nama_barang = $request->get('name');
-            $barang->id_kategori = $request->get('kategori');
+            $barang->id_kendaraan = $request->get('kendaraan');
             $barang->merk = $request->get('merk');
             $barang->ukuran = $request->get('ukuran');
             $barang->bahan = $request->get('bahan');
@@ -181,6 +181,7 @@ class BarangController extends Controller
             $barang->kondisi_barang = $request->get('kondisi_barang');
             $barang->jumlah_barang = $request->get('jumlah_barang');
             $barang->updated_at = now();
+            $barang->nipb = $request->get('nipb');
 
             $barang->harga_barang = $this->formatNumber($request->get('harga_barang'));
             if ($request->hasFile('gambar_konten')) {

@@ -75,6 +75,7 @@
             </div>
           </div>
         </div>
+        @if (auth()->user()->role != 'anggota')
         <div class="col-sm-6">
             <div class="col-md-12 col-lg-12 grid-margin stretch-card">
                 <div class="card card-rounded">
@@ -135,7 +136,7 @@
                 </div>
             </div>
         </div>
-
+        @endif
       </div>
     @endsection
 </x-app-layout>

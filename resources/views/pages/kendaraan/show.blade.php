@@ -43,67 +43,35 @@
                         <div class="table-responsive">
                             <table class="table table-bordered table-responsive-sm">
                                 <tbody>
-                                    <tr>
+                                <tr>
                                         <td width="20%">NAK - NIK</td>
                                         <td width="1%">:</td>
-                                        <td >{{ ucwords($data->nipb) }}</td>
+                                        <td >{{ ucwords($data->nipk) }}</td>
                                     </tr>
                                     <tr>
-                                        <td width="20%">Kendaraan</td>
+                                        <td width="20%">Nomor Polisi</td>
                                         <td width="1%">:</td>
-                                        <td >{{ ucwords($data->kendaraan->nopol) }}</td>
+                                        <td >{{ ucwords($data->nopol) }}</td>
                                     </tr>
                                     <tr>
-                                        <td width="20%">Nama Anggota</td>
+                                        <td width="20%">Merk Jenis Kendaraan</td>
                                         <td width="1%">:</td>
-                                        <td >{{ ucwords($data->nama_barang) }}</td>
+                                        <td >{{ ucwords($data->jenis) }}</td>
                                     </tr>
                                     <tr>
-                                        <td width="20%">Muatan</td>
+                                        <td width="20%">Kategori Kendaraan</td>
                                         <td width="1%">:</td>
-                                        <td >{{ ucwords($data->merk) }}</td>
+                                        <td >{{ ucwords($data->kategori->nama) }}</td>
                                     </tr>
                                     <tr>
-                                        <td width="20%">Kondisi Rem dan Lampu</td>
+                                        <td width="20%">Status Kendaraan</td>
                                         <td width="1%">:</td>
-                                        <td >{{ ucwords($data->ukuran) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="20%">Kondisi Oli dan Radiator</td>
-                                        <td width="1%">:</td>
-                                        <td >{{ $data->bahan }}</td>
+                                        <td >{{ ucwords($data->kategori->status) }}</td>
                                     </tr>
                                     <tr>
                                         <td width="20%">Masa Berlaku STNK</td>
                                         <td width="1%">:</td>
-                                        <td >{{ date('d M Y', strtotime($data->tahun )) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="20%">Kondisi Ban dan Wipper</td>
-                                        <td width="1%">:</td>
-                                        <td >{{ ucwords($data->asal_barang) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="20%">Kondisi Klakson</td>
-                                        <td width="1%">:</td>
-                                        <td >{{ ucwords($data->kondisi_barang) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="20%">Jumlah Penumpang</td>
-                                        <td width="1%">:</td>
-                                        <td >{{ ucwords($data->jumlah_barang) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="20%">Meteran Akhir</td>
-                                        <td width="1%">:</td>
-                                        <td >Rp . {{ number_format($data->harga_barang,2, ",", ".") }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="20%">Foto Kendaraan</td>
-                                        <td width="1%">:</td>
-                                        <td >
-                                                <img src="{{ $data->foto_barang != null ?  asset('img/barang/'.$data->foto_barang) : asset('assets/images/noimage.png') }}" alt="" class="img-fluid "  id="">
-                                        </td>
+                                        <td >{{ date('d M Y', strtotime($data->stnk )) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

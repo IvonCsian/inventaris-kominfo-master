@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\kendaraan;
 use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 

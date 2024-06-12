@@ -3,6 +3,7 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryBarangController;
+use App\Http\Controllers\HistorykendaraanController;
 use App\Http\Controllers\JenisKategoriController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LogUserController;
@@ -32,7 +33,7 @@ Route::middleware('auth')->group(function () {
     // kategori
     Route::resource('kategori',KategoriController::class);
     // User
-    Route::get('pdf',[BarangController::class,'pdfDownload'])->name('barang.pdf');
+    Route::get('barang/pdf',[BarangController::class,'pdfDownload'])->name('barang.pdf');
     Route::delete('{id}/delete-permanent-barang', [BarangController::class, 'deletePermanent'])->name('barang.deletePermanent');
     Route::post('{id}/restore-barang',[BarangController::class,'restore'])->name('barang.restore');
     Route::resource('barang', BarangController::class);
@@ -41,10 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::get('log-user',[LogUserController::class,'loguser'])->name('log.user');
     // history barang
     Route::get('history-barang',[HistoryBarangController::class, 'history'])->name('history.barang');
+     // history kendaraan
+     Route::get('history-kendaraan',[HistorykendaraanController::class, 'history'])->name('history.kendaraan');
     // kendaraan
-    Route::get('pdf',[kendaraanController::class,'pdfDownload'])->name('kendaraan.pdf');
     Route::delete('{id}/delete-permanent-kendaraan', [kendaraanController::class, 'deletePermanent'])->name('kendaraan.deletePermanent');
     Route::post('{id}/restore-kendaraan',[kendaraanController::class,'restore'])->name('kendaraan.restore');
+    Route::get('kendaraan/pdf',[kendaraanController::class,'pdfDownload'])->name('kendaraan.pdf');
     Route::resource('kendaraan', kendaraanController::class);
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\kendaraan;
 use App\Models\JenisKategori;
 use App\Models\Kategori;
 use App\Models\User;

@@ -75,10 +75,10 @@
                                             {{-- <td>{{ date('d M Y - H:i:s', strtotime($item->created_at )) }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="{{ route('kategori.edit',$item->id) }}" type="button" class="btn btn-primary">
+                                                    <a href="{{ route('kendaraan.edit',$item->id) }}" type="button" class="btn btn-primary">
                                                       <i class="ti-pencil-alt"></i>
                                                     </a>
-                                                    <form action="{{ route('kategori.destroy',$item->id) }}" method="POST" onsubmit="return confirm('Move data to trash? ')">
+                                                    <form action="{{ route('kendaraan.destroy',$item->id) }}" method="POST" onsubmit="return confirm('Move data to trash? ')">
                                                     @csrf
                                                     @method('delete')
                                                     <button class="btn btn-primary">

@@ -73,7 +73,7 @@
                 <div class="card" style="border: none">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title pt-2 font-weight-bold" style="font-weight: bold">Laporan Kondisi Kendaraan</h4>
+                            <h4 class="card-title pt-2 font-weight-bold" style="font-weight: bold">Laporan Data Kendaraan</h4>
                             <div class="mx-3">
                                 <button onclick="history.back()" class="btn btn-primary btn-icon-text no-print"><i class="ti-angle-left btn-icon-prepend"></i> Kembali</button>
                             </div>
@@ -85,12 +85,10 @@
                                 <thead>
                                   <tr>
                                     <th>#</th>
-                                    <th>Nama Anggota</th>
                                     <th>Nomor Polisi</th>
-                                    <th>Masa Berlaku STNK Kendaraan</th>
-                                    <th>Muatan</th>
-                                    <th>Jumlah Penumpang</th>
-                                    <th>Meteran Akhir</th>
+                                    <th>Kategori Kendaraan</th>
+                                    <th>Status Kendaraan</th>
+                                    <th>Merk Jenis Kendaraan</th>
                                     <th>Masa Berlaku STNK</th>
                                     <th>NAK - NIK</th>
                                   </tr>
@@ -99,14 +97,12 @@
                                   @forelse ($data as $item)
                                       <tr>
                                           <td>{{ $loop->iteration }}</td>
-                                          <td>{{ ucwords($item->nama_barang) }}</td>
-                                          <td>{{ ucwords($item->kendaraan->nopol) }}</td>
-                                          <td>{{ ucwords($item->kendaraan->stnk) }}</td>
-                                          <td>{{ ucwords($item->merk) }}</td>
-                                          <td>{{ ucwords($item->jumlah_barang) }}</td>
-                                          <td>Rp . {{ number_format($item->harga_barang,2, ",", ".") }}</td>
-                                          <td>{{ date('d M Y', strtotime($item->tahun )) }}</td>
-                                          <td>{{ ucwords($item->nipb) }}</td>
+                                          <td>{{ ucwords($item->nopol) }}</td>
+                                          <td>{{ ucwords($item->kategori->nama) }}</td>
+                                          <td>{{ ucwords($item->kategori->status) }}</td>
+                                          <td>{{ ucwords($item->jenis) }}</td>
+                                          <td>{{ date('d M Y', strtotime($item->stnk )) }}</td>
+                                          <td>{{ ucwords($item->nipk) }}</td>
                                       </tr>
                                   @empty
                                       <tr>

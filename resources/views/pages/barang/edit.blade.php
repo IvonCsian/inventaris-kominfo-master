@@ -82,8 +82,8 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for="exampleInputUsername1">NAK - NIK <span class="text-danger">*</span></label>
-                                <input type="text" name="nip" value="{{ old('nip',$data->nip) }}" class="form-control @error('nip') is-invalid @enderror" id="exampleInputUsernip1" placeholder="Masukkan NAK - NIK">
-                                  @error('nip')
+                                <input type="text" name="nipb" value="{{ old('nipb',$data->nipb) }}" class="form-control @error('nipb') is-invalid @enderror" id="exampleInputUsernip1" placeholder="Masukkan NAK - NIK">
+                                  @error('nipb')
                                   <small class="text-danger" style="font-size: 12px">
                                       {{ $message }}.
                                   </small>
@@ -91,8 +91,8 @@
                                   @enderror
                             </div>
                             <div class="form-group">
-                              <label for="exampleInputUsername1">Nomor Polisi <span class="text-danger">*</span></label>
-                              <input type="text" name="name" value="{{ old('name',$data->nama_barang) }}" class="form-control @error('name') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Nomor Polisi">
+                              <label for="exampleInputUsername1">Nama Anggota <span class="text-danger">*</span></label>
+                              <input type="text" name="name" value="{{ old('name',$data->nama_barang) }}" class="form-control @error('name') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Nama Anggota">
                                 @error('name')
                                 <small class="text-danger" style="font-size: 12px">
                                     {{ $message }}.
@@ -101,14 +101,14 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputUsername1">Kategori <span class="text-danger">*</span></label>
-                                <select name="kategori" class="form-control js-example-basic-single w-100">
-                                    <option value="0">Pilih Kategori</option>
-                                    @foreach ($kategori as $item)
-                                        <option value="{{ $item->id }}" {{ $data->id_kategori == $item->id ? 'selected' : '' }}>{{ ucwords($item->nama) }}{{ ucwords($item->status) }}</option>
+                                <label for="exampleInputUsername1">Kendaraan <span class="text-danger">*</span></label>
+                                <select name="kendaraan" class="form-control js-example-basic-single w-100">
+                                    <option value="0">Pilih Kendaraan</option>
+                                    @foreach ($kendaraan as $item)
+                                        <option value="{{ $item->id }}" {{ $data->id_kendaraan == $item->id ? 'selected' : '' }}>{{ ucwords($item->nopol) }}{{ ucwords($item->stnk) }}</option>
                                     @endforeach
                                 </select>
-                                @error('kategori')
+                                @error('kendaraan')
                                 <small class="text-danger" style="font-size: 12px">
                                     {{ $message }}.
                                 </small>

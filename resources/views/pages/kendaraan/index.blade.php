@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="card mb-4 col-md-8 mx-auto">
                         <div class="card-body">
-                            <form action="{{ route('barang.index') }}" method="GET">
+                            <form action="{{ route('kendaraan.index') }}" method="GET">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -54,14 +54,16 @@
                                             Filter
                                         </button>
                                     </div>
+                                    @if (auth()->user()->role != 'anggota')
                                     <div class="col-md-2 align-self-center p-1">
-                                        <a href="{{ route('barang.pdf') }}" type="button" class="btn btn-danger btn-icon-text w-100">
+                                        <a href="{{ route('kendaraan.pdf') }}" type="button" class="btn btn-danger btn-icon-text w-100">
                                             <i class="ti-printer btn-icon-prepend"></i>
                                             Cetak PDF
                                         </a>
                                     </div>
+                                    @endif
                                     <div class="col-md-2 align-self-center p-1">
-                                        <a href="{{ route('barang.index') }}" class="btn btn-outline-danger btn-icon-text w-100">
+                                        <a href="{{ route('kendaraan.index') }}" class="btn btn-outline-danger btn-icon-text w-100">
                                             <i class="ti-shift-left btn-icon-prepend"></i>
                                             Reset
                                         </a>
@@ -75,9 +77,11 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between py-2">
                             <h4 class="card-title pt-2">{{ ucwords($title) }}</h4>
+                            @if (auth()->user()->role != 'anggota')
                             <div>
-                                <a href="{{ route('barang.create') }}" class="btn btn-primary">Tambah Data</a>
+                                <a href="{{ route('kendaraan.create') }}" class="btn btn-primary">Tambah Data</a>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -86,13 +90,11 @@
                               <thead>
                                 <tr>
                                   <th>No</th>
-                                  <th>NAK - NIK</th>
-                                  <th>Nama Anggota</th>
-                                  <th>Kendaraan</th>
-                                  <th>Muatan</th>
-                                  <th>Jumlah Penumpang</th>
-                                  <th>Meteran Akhir</th>
+                                  <th>Nomor Polisi</th>
+                                  <th>Jenis Merk Kendaraan</th>
+                                  <th>Kategori Kendaraan</th>
                                   <th>Masa berlaku STNK</th>
+                                  <th>NAK - NIK</th>
                                   <th>Status</th>
                                   @if (auth()->user()->role != 'anggota')
                                   <th>Action</th>
@@ -103,29 +105,28 @@
                                 @forelse ($data as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nipb }}</td>
-                                        <td>{{ ucwords($item->nama_barang) }}</td>
-                                        <td>{{ ucwords($item->kendaraan->nopol) }}</td>
-                                        <td>{{ ucwords($item->merk) }}</td>
-                                        <td>{{ ucwords($item->jumlah_barang) }}</td>
-                                        <td>Rp . {{ number_format($item->harga_barang,2, ",", ".") }}</td>
-                                        <td>{{ date('d M Y', strtotime($item->tahun )) }}</td>
+                                        <td>{{ $item->nopol }}</td>
+                                        <td>{{ ucwords($item->jenis) }}</td>
+                                        <td>{{ ucwords($item->kategori->nama) }}</td>
+                                        <td>{{ date('d M Y', strtotime($item->stnk )) }}</td>
+                                        <td>{{ ucwords($item->nipk) }}</td>
                                         <td>
                                             @if ($item->updated_at != null)
                                             <span class="badge badge-warning">Telah Diedit pada : {{ date('d M Y', strtotime($item->updated_at )) }}</span></td>
                                             @else
                                             -
                                             @endif
+                                        @if (auth()->user()->role != 'anggota')
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ route('barang.show',$item->id) }}" type="button" class="btn btn-primary">
+                                                <a href="{{ route('kendaraan.show',$item->id) }}" type="button" class="btn btn-primary">
                                                     <i class="ti-eye"></i>
                                                 </a>
-                                                <a href="{{ route('barang.edit',$item->id) }}" type="button" class="btn btn-primary">
+                                                <a href="{{ route('kendaraan.edit',$item->id) }}" type="button" class="btn btn-primary">
                                                   <i class="ti-pencil-alt"></i>
                                                 </a>
-                                                {{-- <form action="{{ $item->is_active != 0 ? route('barang.destroy',$item->id) : route('barang.restore',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('{{ $item->is_active != 0 ? 'Move data to trash? ' : 'return data ?' }}')"> --}}
-                                                <form action="{{ route('barang.destroy',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('Move data to trash? ')">
+                                                {{-- <form action="{{ $item->is_active != 0 ? route('kendaraan.destroy',$item->id) : route('kendaraan.restore',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('{{ $item->is_active != 0 ? 'Move data to trash? ' : 'return data ?' }}')"> --}}
+                                                <form action="{{ route('kendaraan.destroy',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('Move data to trash? ')">
                                                     @method('delete')
                                                     {{-- @if ($item->is_active != 0)
                                                     @method('delete')
@@ -137,6 +138,7 @@
 
                                             </div>
                                         </td>
+                                        @endif
                                     </tr>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
