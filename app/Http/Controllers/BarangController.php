@@ -63,6 +63,7 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+       
         $request->validate([
             'nipb' => 'required|max:50',
             'name' => 'required',
@@ -79,6 +80,7 @@ class BarangController extends Controller
         ],[
             'nipb.required' => "NAK - NIK Tidak Boleh Kosong!",
             'name.required' => "Nama Anggota Tidak Boleh Kosong!",
+            'kendaraan.required' => "Kendaraan Tidak Boleh Kosong!",
             'merk.required' => "Muatan Kendaraan Tidak Boleh Kosong!",
             'bahan.required' => "Kondisi Oli dan Radiator Kendaraan Tidak Boleh Kosong!",
             'ukuran.required' => "Kondisi Rem dan Lampu Kendaraan Tidak Boleh Kosong!",
@@ -160,7 +162,7 @@ class BarangController extends Controller
         $request->validate([
             'nipb' => 'required|max:50',
             'name' => 'required',
-            'kendaraan' => 'kendaraan|not_in:0',
+            'kendaraan' => 'required|not_in:0',
             'bahan' => 'required',
             'ukuran' => 'required',
             'tahun' => 'required',
