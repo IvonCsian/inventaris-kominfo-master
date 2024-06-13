@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::post('{id}/restore-kendaraan',[kendaraanController::class,'restore'])->name('kendaraan.restore');
     Route::get('kendaraan/pdf',[kendaraanController::class,'pdfDownload'])->name('kendaraan.pdf');
     Route::resource('kendaraan', kendaraanController::class);
+    // laporan
+    Route::delete('{id}/delete-permanent-laporan', [laporanController::class, 'deletePermanent'])->name('laporan.deletePermanent');
+    Route::get('laporan/pdf',[laporanController::class,'pdfDownload'])->name('laporan.pdf');
+    Route::resource('laporan', laporanController::class);
 });
 
 require __DIR__.'/auth.php';

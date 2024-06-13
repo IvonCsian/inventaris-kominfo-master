@@ -27,7 +27,7 @@
           <li class="nav-item {{ Request::segment(1) == "barang" ? 'active' : ''  }}">
             <a class="nav-link " href="{{ route('barang.index') }}">
               <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">Kendaraan</span>
+              <span class="menu-title">Update Kondisi</span>
             </a>
           </li>
           @if (auth()->user()->role != 'anggota')

@@ -84,7 +84,7 @@ class BarangController extends Controller
             'merk.required' => "Muatan Kendaraan Tidak Boleh Kosong!",
             'bahan.required' => "Kondisi Oli dan Radiator Kendaraan Tidak Boleh Kosong!",
             'ukuran.required' => "Kondisi Rem dan Lampu Kendaraan Tidak Boleh Kosong!",
-            'tahun.required' => "Masa Berlaku STNK Kendaraan Tidak Boleh Kosong!",
+            'tahun.required' => "Tanggal Update Kondisi Tidak Boleh Kosong!",
             'asal_barang.required' => "Kondisi Ban dan Wipper Kendaraan Tidak Boleh Kosong!",
             'kondisi_barang.required' => "Kondisi Klakson Tidak Boleh Kosong!",
             'jumlah_barang.required' => "Jumlah Penumpang Tidak Boleh Kosong!",
@@ -170,6 +170,7 @@ class BarangController extends Controller
             'kondisi_barang' => 'required',
             'jumlah_barang' => 'required',
             'harga_barang' => 'required',
+            'gambar_konten' => 'required',
         ]);
         try{
             $barang = Barang::withTrashed()->find($id);
@@ -273,11 +274,23 @@ class BarangController extends Controller
     }
 
     public function deletePermanent($id)
-    {
-        $data = Barang::withTrashed()->where('id',$id);
-        $last_path = public_path().'/img/barang/'.$data->foto_barang;
+{
+    // Retrieve the model instance
+    $data = Barang::withTrashed()->where('id', $id)->firstOrFail();
+    
+    // Construct the path to the image
+    $last_path = public_path('/img/barang/' . $data->foto_barang);
+    
+    // Check if the file exists before attempting to delete it
+    if (file_exists($last_path)) {
         unlink($last_path);
-        $data->forceDelete();
-        return redirect()->route('barang.index')->with('status', 'Data berhasil dihapus permanent!');
     }
+
+    // Permanently delete the record
+    $data->forceDelete();
+
+    // Redirect back with a success message
+    return redirect()->route('barang.index')->with('status', 'Data berhasil dihapus permanent!');
+}
+
 }

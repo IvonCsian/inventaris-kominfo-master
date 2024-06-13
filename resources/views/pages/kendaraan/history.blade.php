@@ -128,6 +128,13 @@
                                                     <td>{{ $item->jenis }}</td>
                                                     <td>{{ date('d M Y', strtotime($item->stnk )) }}</td>
                                                     <td>
+                                                    <form action="{{ route('kendaraan.deletePermanent',$item->id) }}" method="POST" onsubmit="return confirm('Hapus Data Permanent? ')">
+                                                    @csrf
+                                                    @method('delete')
+                                                        <button class="btn btn-primary">
+                                                        <i class="ti-trash"></i>
+                                                        </button>
+                                                    </form>
                                                     <form action="{{ route('kendaraan.restore',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('return data ?')">
                                                         @csrf
                                                         <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Ganti Status"><i class="mdi mdi-backup-restore"></i></button>

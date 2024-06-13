@@ -151,8 +151,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputUsername1">Masa Berlaku STNK <span class="text-danger">*</span></label>
-                                        <input type="text" data-provide="tahun" name="tahun" value="{{ old('tahun',$data->tahun) }}" class="form-control tahun @error('tahun') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Masa Berlaku STNK">
+                                        <label for="exampleInputUsername1">Tanggal Update Kondisi <span class="text-danger">*</span></label>
+                                        <input type="text" data-provide="tahun" name="tahun" value="{{ old('tahun',$data->tahun) }}" class="form-control tahun @error('tahun') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan Tanggal Update Kondisi">
                                           @error('tahun')
                                           <small class="text-danger" style="font-size: 12px">
                                               {{ $message }}.

@@ -92,7 +92,7 @@
                                   <th>Muatan</th>
                                   <th>Jumlah Penumpang</th>
                                   <th>Meteran Akhir</th>
-                                  <th>Masa berlaku STNK</th>
+                                  <th>Tanggal Update Kondisi</th>
                                   <th>Status</th>
                                   @if (auth()->user()->role != 'anggota')
                                   <th>Action</th>

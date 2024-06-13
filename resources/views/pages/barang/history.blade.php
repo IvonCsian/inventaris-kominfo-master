@@ -108,11 +108,11 @@
                                                 <th>NAK - NIK</th>
                                                 <th>Nama Anggota</th>
                                                 <th>Nomor Polisi</th>
-                                                <th>Masa Berlaku STNK Kendaraan</th>
+                                                <th>Masa Berlaku STNK</th>
                                                 <th>Muatan</th>
                                                 <th>Jumlah Penumpang</th>
                                                 <th>Meteran Akhir</th>
-                                                <th>Masa Berlaku STNK</th>
+                                                <th>Tanggal Update Kondisi</th>
                                                 <th>Aksi</th>
                                             </tr>
                                           </thead>
@@ -132,6 +132,13 @@
                                                     <td>Rp . {{ number_format($item->harga_barang,2, ",", ".") }}</td>
                                                     <td>{{ date('d M Y', strtotime($item->tahun )) }}</td>
                                                     <td>
+                                                    <form action="{{ route('barang.deletePermanent',$item->id) }}" method="POST" onsubmit="return confirm('Hapus Data Permanent? ')">
+                                                    @csrf
+                                                    @method('delete')
+                                                        <button class="btn btn-primary">
+                                                        <i class="ti-trash"></i>
+                                                        </button>
+                                                    </form>
                                                     <form action="{{ route('barang.restore',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('return data ?')">
                                                         @csrf
                                                         <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Ganti Status"><i class="mdi mdi-backup-restore"></i></button>

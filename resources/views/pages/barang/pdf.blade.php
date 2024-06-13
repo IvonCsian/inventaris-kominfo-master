@@ -87,11 +87,11 @@
                                     <th>#</th>
                                     <th>Nama Anggota</th>
                                     <th>Nomor Polisi</th>
-                                    <th>Masa Berlaku STNK Kendaraan</th>
+                                    <th>Masa Berlaku STNK</th>
                                     <th>Muatan</th>
                                     <th>Jumlah Penumpang</th>
                                     <th>Meteran Akhir</th>
-                                    <th>Masa Berlaku STNK</th>
+                                    <th>Tanggal Update Kondisi</th>
                                     <th>NAK - NIK</th>
                                   </tr>
                                 </thead>

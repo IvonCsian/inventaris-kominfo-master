@@ -222,8 +222,14 @@ class kendaraanController extends Controller
 
     public function deletePermanent($id)
     {
-        $data = kendaraan::withTrashed()->where('id',$id);
+        // Retrieve the model instance with trashed items
+        $data = kendaraan::withTrashed()->where('id', $id)->firstOrFail();
+    
+        // Permanently delete the record
         $data->forceDelete();
+    
+        // Redirect back with a success message
         return redirect()->route('kendaraan.index')->with('status', 'Data berhasil dihapus permanent!');
     }
+    
 }

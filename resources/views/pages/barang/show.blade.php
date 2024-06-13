@@ -74,7 +74,7 @@
                                         <td >{{ $data->bahan }}</td>
                                     </tr>
                                     <tr>
-                                        <td width="20%">Masa Berlaku STNK</td>
+                                        <td width="20%">Tanggal </td>
                                         <td width="1%">:</td>
                                         <td >{{ date('d M Y', strtotime($data->tahun )) }}</td>
                                     </tr>

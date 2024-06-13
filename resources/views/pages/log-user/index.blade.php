@@ -36,6 +36,8 @@
                                                         Data telah <span class="badge badge-success">ditambahkan</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
                                                     @elseif ($item->description == 'updated')
                                                         Data telah <span class="badge badge-warning">diganti</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
+                                                    @elseif ($item->description == 'restored')
+                                                        Data telah <span class="badge badge-warning">dipulihkan</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
                                                     @else
                                                         Data telah <span class="badge badge-danger">dihapus</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
 
@@ -62,6 +64,8 @@
                                                     Data telah <span class="badge badge-success">ditambahkan</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
                                                 @elseif ($item->description == 'updated')
                                                     Data telah <span class="badge badge-warning">diganti</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
+                                                @elseif ($item->description == 'restored')
+                                                    Data telah <span class="badge badge-warning">dipulihkan</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
                                                 @else
                                                     Data telah <span class="badge badge-danger">dihapus</span> di menu : <strong>{{ ucwords($item->log_name) }}</strong>
 
