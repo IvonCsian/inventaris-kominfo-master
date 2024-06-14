@@ -30,6 +30,14 @@
               <span class="menu-title">Update Kondisi</span>
             </a>
           </li>
+          @if (auth()->user()->role != 'admin')
+          <li class="nav-item {{ Request::segment(1) == "laporan" ? 'active' : ''  }}">
+            <a class="nav-link " href="{{ route('laporan.create') }}">
+              <i class="menu-icon mdi mdi-file-document"></i>
+              <span class="menu-title">Tambah Laporan</span>
+            </a>
+          </li>
+          @endif
           @if (auth()->user()->role != 'anggota')
           <li class="nav-item {{ Request::segment(1) == 'log-user' ? 'active' : ''  }}">
             <a class="nav-link" href="{{ route('log.user') }}">
@@ -37,11 +45,17 @@
               <span class="menu-title">Activity User</span>
             </a>
           </li>
+          <li class="nav-item {{ Request::segment(1) == 'laporan' ? 'active' : ''  }}">
+            <a class="nav-link" href="{{ route('laporan.index') }}">
+              <i class="menu-icon mdi mdi-account-key"></i>
+              <span class="menu-title">Laporan Anggota</span>
+            </a>
+          </li>
           @endif
           <li class="nav-item {{ Request::segment(1) == 'history-barang' ? "active" : ' '  }}">
             <a class="nav-link " href="{{ route('history.barang') }}">
               <i class="menu-icon mdi mdi-history"></i>
-              <span class="menu-title">Riwayat Kendaraan</span>
+              <span class="menu-title">Riwayat Kondisi</span>
             </a>
           </li>
           @if (auth()->user()->role != 'anggota')

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class BarangController extends Controller
+class laporanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -98,10 +98,75 @@ class BarangController extends Controller
             }
             $laporan->id_user = Auth::user()->id;
             $laporan->save();
-            return redirect()->route('laporan.index')->withStatus('Berhasil menambahkan data');
+            return redirect()->route('laporan.create')->withStatus('Berhasil menambahkan data');
         } catch (Exception $e) {
+            return redirect()->route('laporan.create')->withError('Terjadi kesalahan');
+        }
+    }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nipl' => 'required|max:50',
+            'nama' => 'required',
+            'kendaraan' => 'required|not_in:0',
+            'tanggal' => 'required',
+            'isi' => 'required',
+            'foto_konten' => 'required',
+        ]);
+        try{
+            $laporan = laporan::withTrashed()->find($id);
+            $laporan->nama = $request->get('nama');
+            $laporan->id_kendaraan = $request->get('kendaraan');
+            $laporan->tanggal = $request->get('tanggal');
+            $laporan->isi = $request->get('isi');
+            $laporan->updated_at = now();
+            $laporan->nipl = $request->get('nipl');
+            if ($request->hasFile('foto_konten')) {
+                $photos = $request->file('foto_konten');
+                $last_path = public_path().'/img/barang/'.$laporan->foto;
+                unlink($last_path);
+                $filename = date('His') . '.' . $photos->getClientOriginalExtension();
+                $path = public_path('img/barang');
+                if ($photos->move($path, $filename)) {
+                    $laporan->foto = $filename;
+                }else{
+                    return redirect()->back()->withError('Terjadi kesalahan.');
+                }
+            }
+            $laporan->id_user = Auth::user()->id;
+            $laporan->update();
+            return redirect()->route('laporan.index')->withStatus('Berhasil mengganti data');
+        } catch (Exception $e) {
+            return $e;
             return redirect()->route('laporan.index')->withError('Terjadi kesalahan');
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        // $laporan = laporan::find($id);
+        laporan::withTrashed()->where('id',$id)->update([
+            'is_active' => '0',
+            // 'updated_at' => null,
+
+        ]);
+        laporan::withTrashed()->where('id',$id)->delete();
+        return redirect()->route('laporan.index')->withStatus('Berhasil menghapus data');
+
     }
 
     /**
@@ -138,6 +203,7 @@ class BarangController extends Controller
         }
         return view('pages.laporan.pdf',['data' => $query]);
     }
+    
     public function formatNumber($param)
     {
         return (int)str_replace('.', '', $param);
@@ -145,6 +211,23 @@ class BarangController extends Controller
     public function pecahBulan($param)
     {
         return explode('-', $param);
+    }
+
+    public function restore($id)
+    {
+        try {
+            laporan::withTrashed()->where('id',$id)->update([
+                'is_active' => true,
+                // 'updated_at' => null,
+            ]);
+            $restore = laporan::withTrashed()->where('id',$id);
+            $restore->restore();
+            return redirect()->route('laporan.index')->withStatus('Berhasil mengganti status data.');
+        } catch (Exception $e) {
+            return redirect()->route('laporan.index')->withError('Terjadi kesalahan.');
+        } catch (QueryException $e){
+            return redirect()->route('laporan.index')->withError('Terjadi kesalahan.');
+        }
     }
 
     public function deletePermanent($id)

@@ -89,6 +89,10 @@
                                     <th>Nomor Polisi</th>
                                     <th>Masa Berlaku STNK</th>
                                     <th>Muatan</th>
+                                    <th>Kondisi Rem dan Lampu</th>
+                                    <th>Kondisi Oli dan Radiator</th>
+                                    <th>Kondisi Ban dan Wipper</th>
+                                    <th>Kondisi Klakson</th>
                                     <th>Jumlah Penumpang</th>
                                     <th>Meteran Akhir</th>
                                     <th>Tanggal Update Kondisi</th>
@@ -103,6 +107,10 @@
                                           <td>{{ ucwords($item->kendaraan->nopol) }}</td>
                                           <td>{{ ucwords($item->kendaraan->stnk) }}</td>
                                           <td>{{ ucwords($item->merk) }}</td>
+                                          <td>{{ ucwords($item->ukuran) }}</td>
+                                          <td>{{ ucwords($item->bahan) }}</td>
+                                          <td>{{ ucwords($item->asal_barang) }}</td>
+                                          <td>{{ ucwords($item->kondisi_barang) }}</td>
                                           <td>{{ ucwords($item->jumlah_barang) }}</td>
                                           <td>Rp . {{ number_format($item->harga_barang,2, ",", ".") }}</td>
                                           <td>{{ date('d M Y', strtotime($item->tahun )) }}</td>

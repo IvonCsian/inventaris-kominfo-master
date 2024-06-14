@@ -10,6 +10,8 @@ use App\Http\Controllers\LogUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\kendaraanController;
+use App\Http\Controllers\laporanController;
+use App\Http\Controllers\lapshowController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -53,6 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('{id}/delete-permanent-laporan', [laporanController::class, 'deletePermanent'])->name('laporan.deletePermanent');
     Route::get('laporan/pdf',[laporanController::class,'pdfDownload'])->name('laporan.pdf');
     Route::resource('laporan', laporanController::class);
+     // lapshow
+     Route::get('laporan/lapshowpdf',[lapshowController::class,'pdfDownload'])->name('laporan.lapshowpdf');
+     Route::resource('lapshow', lapshowController::class);
 });
 
 require __DIR__.'/auth.php';

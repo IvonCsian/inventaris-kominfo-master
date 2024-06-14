@@ -17,7 +17,7 @@
                                 </div>
                                 <div>
                                   <p class="text-small mb-2">Total Kendaraan</p>
-                                  <h4 class="mb-0 fw-bold">{{ $barang }}</h4>
+                                  <h4 class="mb-0 fw-bold">{{ $kendaraan }}</h4>
                                 </div>
                               </div>
                             </div>

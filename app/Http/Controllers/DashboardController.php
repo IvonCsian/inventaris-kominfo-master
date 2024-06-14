@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data['barang'] = Barang::count();
+        $data['kendaraan'] = kendaraan::count();
         $data['jenis'] = JenisKategori::count();
         $data['kategori'] = Kategori::count();
         $data['user'] = User::count();
