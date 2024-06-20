@@ -34,7 +34,7 @@
         }
 
         @page :first {
-            margin-top: 50mm;  /* Hanya diterapkan ke halaman pertama */
+            margin-top: 0mm;  /* Hanya diterapkan ke halaman pertama */
         }
         @media print {
             /* Sembunyikan thead di semua halaman */
