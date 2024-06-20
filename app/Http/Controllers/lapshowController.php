@@ -142,27 +142,30 @@ class lapshowController extends Controller
         $data['data'] = Laporan::find($id);
         return view('pages.laporan.lapshowpdf',$data);
     }
-    public function restore($id)
-    {
-        try {
-            laporan::withTrashed()->where('id',$id)->update([
-                'is_active' => true,
-                // 'updated_at' => null,
-            ]);
-            $restore = laporan::withTrashed()->where('id',$id);
-            $restore->restore();
-            return redirect()->route('laporan.lapshowpdf')->withStatus('Berhasil mengganti status data.');
-        } catch (Exception $e) {
-            return redirect()->route('laporan.lapshowpdf')->withError('Terjadi kesalahan.');
-        } catch (QueryException $e){
-            return redirect()->route('laporan.lapshowpdf')->withError('Terjadi kesalahan.');
-        }
-    }
-    public function pdfDownload(Request $request)
+    // public function restore($id)
+    // {
+    //     try {
+    //         laporan::withTrashed()->where('id',$id)->update([
+    //             'is_active' => true,
+    //             // 'updated_at' => null,
+    //         ]);
+    //         $restore = laporan::withTrashed()->where('id',$id);
+    //         $restore->restore();
+    //         return redirect()->route('laporan.lapshowpdf')->withStatus('Berhasil mengganti status data.');
+    //     } catch (Exception $e) {
+    //         return redirect()->route('laporan.lapshowpdf')->withError('Terjadi kesalahan.');
+    //     } catch (QueryException $e){
+    //         return redirect()->route('laporan.lapshowpdf')->withError('Terjadi kesalahan.');
+    //     }
+    // }
+    public function pdfDownload($id)
     {
         $data = laporan::latest();
-        $query = $data->get();
-
+        // CONTOH PERTAMA 
+        // $query = $data->where('id',$id)->get();
+        // contoh kedua 
+        $query = $data->find($id);
+        
         return view('pages.laporan.lapshowpdf',['data' => $query]);
     }
 }

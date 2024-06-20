@@ -179,6 +179,7 @@ class laporanController extends Controller
     {
         $data['title'] = 'Detail Data Laporan';
         $data['data'] = Laporan::find($id);
+        
         return view('pages.laporan.show',$data);
     }
 

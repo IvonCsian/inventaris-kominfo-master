@@ -21,7 +21,7 @@
             font: 12pt;
         }
         img {
-            width: 100px; /* Adjust the size as needed */
+            width: 250px; /* Adjust the size as needed */
             height: auto;
         }
         * {
@@ -39,7 +39,7 @@
         }
 
         @page :first {
-            margin-top: 50mm;  /* Hanya diterapkan ke halaman pertama */
+            margin-top: 0mm;  /* Hanya diterapkan ke halaman pertama */
         }
         @media print {
             /* Sembunyikan thead di semua halaman */
@@ -109,7 +109,7 @@
                                           <td>{{ ucwords($item->isi) }}</td>
                                           <td>{{ date('d M Y', strtotime($item->tanggal )) }}</td>
                                           <td>{{ ucwords($item->nipl) }}</td>
-                                          <td><img src="{{ asset('img/barang'.ucwords($item->foto)) }}" alt=""></td>
+                                          <td><img src="{{ asset('img/barang/'.ucwords($item->foto)) }}" alt=""></td>
                                       </tr>
                                   @empty
                                       <tr>

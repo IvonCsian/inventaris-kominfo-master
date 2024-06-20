@@ -35,7 +35,8 @@
                         <div class="d-flex justify-content-between py-2">
                             <h4 class="card-title pt-2">{{ ucwords($title) }}</h4>
                             <div class="mx-3">
-                                        <a href="{{ route('laporan.lapshowpdf') }}" type="button" class="btn btn-danger btn-icon-text">
+                                        <!-- Menampung id/parameter  -->
+                                        <a href="{{ route('laporan.lapshowpdf',$data->id) }}" type="button" class="btn btn-danger btn-icon-text">
                                             <i class="ti-printer btn-icon-prepend"></i>
                                             Cetak PDF
                                         </a>

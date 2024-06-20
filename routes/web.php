@@ -56,7 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::get('laporan/pdf',[laporanController::class,'pdfDownload'])->name('laporan.pdf');
     Route::resource('laporan', laporanController::class);
      // lapshow
-     Route::get('laporan/lapshowpdf',[lapshowController::class,'pdfDownload'])->name('laporan.lapshowpdf');
+    //  CONTOH MANGGIL BERDASARKAN ID 
+     Route::get('lapshow/laps-show-pdf/{id}',[lapshowController::class,'pdfDownload'])->name('laporan.lapshowpdf');
      Route::resource('lapshow', lapshowController::class);
 });
 

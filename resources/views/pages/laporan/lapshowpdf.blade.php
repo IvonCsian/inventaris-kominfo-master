@@ -21,7 +21,7 @@
             font: 12pt;
         }
         img {
-            width: 100px; /* Adjust the size as needed */
+            width: 400px; /* Adjust the size as needed */
             height: auto;
         }
         * {
@@ -35,11 +35,11 @@
 
         @page {
             margin: 0;  /* Ini akan diterapkan ke setiap halaman */
-            size: landscape;
+            size: portrait;
         }
 
         @page :first {
-            margin-top: 50mm;  /* Hanya diterapkan ke halaman pertama */
+            margin-top: 0mm;  /* Hanya diterapkan ke halaman pertama */
         }
         @media print {
             /* Sembunyikan thead di semua halaman */
@@ -87,36 +87,38 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered">
-                                <thead>
                                   <tr>
                                     <th>#</th>
-                                    <th>Nama Anggota</th>
-                                    <th>Nomor Polisi</th>
-                                    <th>Masa Berlaku STNK</th>
-                                    <th>isi</th>
-                                    <th>Tanggal Laporan</th>
-                                    <th>NAK - NIK</th>
-                                    <th>Foto Kendaraan</th>
+                                    <td>{{ $data->id}}</td>
                                   </tr>
-                                </thead>
-                                <tbody>
-                                  @forelse ($data as $item)
-                                      <tr>
-                                          <td>{{ $loop->iteration }}</td>
-                                          <td>{{ ucwords($item->nama) }}</td>
-                                          <td>{{ ucwords($item->kendaraan->nopol) }}</td>
-                                          <td>{{ ucwords($item->kendaraan->stnk) }}</td>
-                                          <td>{{ ucwords($item->isi) }}</td>
-                                          <td>{{ date('d M Y', strtotime($item->tanggal )) }}</td>
-                                          <td>{{ ucwords($item->nipl) }}</td>
-                                          <td><img src="{{ asset('img/barang'.ucwords($item->foto)) }}" alt=""></td>
-                                      </tr>
-                                  @empty
-                                      <tr>
-                                          <td>Tidak ada data</td>
-                                      </tr>
-                                  @endforelse
-                                </tbody>
+                                  <tr>
+                                    <th>Nama Anggota</th>
+                                    <td>{{ ucwords($data->nama) }}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Nomor Polisi</th>
+                                    <td>{{ ucwords($data->kendaraan->nopol) }}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Masa Berlaku STNK</th>
+                                    <td>{{ ucwords($data->kendaraan->stnk) }}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>isi</th>
+                                    <td>{{ ucwords($data->isi) }}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Tanggal Laporan</th>
+                                    <td>{{ date('d M Y', strtotime($data->tanggal )) }}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>NAK - NIK</th>
+                                    <td>{{ ucwords($data->nipl) }}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Foto Kendaraan</th>
+                                    <td><img src="{{ asset('img/barang/'.ucwords($data->foto)) }}" alt=""></td>
+                                  </tr>                
                               </table>
                         </div>
                         <div class="d-flex justify-content-between my-5">
