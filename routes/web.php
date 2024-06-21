@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\kendaraanController;
 use App\Http\Controllers\laporanController;
 use App\Http\Controllers\lapshowController;
+use App\Http\Controllers\pedomanController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -59,6 +60,9 @@ Route::middleware('auth')->group(function () {
     //  CONTOH MANGGIL BERDASARKAN ID 
      Route::get('lapshow/laps-show-pdf/{id}',[lapshowController::class,'pdfDownload'])->name('laporan.lapshowpdf');
      Route::resource('lapshow', lapshowController::class);
+     // pedoman
+     Route::get('/pedoman', [pedomanController::class, 'show'])->name('pedoman');
+    
 });
 
 require __DIR__.'/auth.php';

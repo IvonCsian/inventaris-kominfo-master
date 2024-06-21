@@ -88,7 +88,7 @@
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                   <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <td>{{ $data->id}}</td>
                                   </tr>
                                   <tr>

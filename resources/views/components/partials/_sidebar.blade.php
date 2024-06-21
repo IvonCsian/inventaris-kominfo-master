@@ -24,17 +24,23 @@
                 </div>
             </li>
           @endif
-          <li class="nav-item {{ Request::segment(1) == "barang" ? 'active' : ''  }}">
-            <a class="nav-link " href="{{ route('barang.index') }}">
+          @if (auth()->user()->role != 'admin')
+          <li class="nav-item {{ Request::segment(1) == "pedoman" ? 'active' : ''  }}">
+            <a class="nav-link " href="{{ route('pedoman') }}">
               <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">Update Kondisi</span>
+              <span class="menu-title">Baca Pedoman</span>
             </a>
           </li>
-          @if (auth()->user()->role != 'admin')
           <li class="nav-item {{ Request::segment(1) == "laporan" ? 'active' : ''  }}">
             <a class="nav-link " href="{{ route('laporan.create') }}">
               <i class="menu-icon mdi mdi-file-document"></i>
               <span class="menu-title">Tambah Laporan</span>
+            </a>
+          </li>
+          <li class="nav-item {{ Request::segment(1) == "barang" ? 'active' : ''  }}">
+            <a class="nav-link " href="{{ route('barang.index') }}">
+              <i class="menu-icon mdi mdi-file-document"></i>
+              <span class="menu-title">Update Kondisi</span>
             </a>
           </li>
           @endif
@@ -52,12 +58,14 @@
             </a>
           </li>
           @endif
+          @if (auth()->user()->role != 'admin')
           <li class="nav-item {{ Request::segment(1) == 'history-barang' ? "active" : ' '  }}">
             <a class="nav-link " href="{{ route('history.barang') }}">
               <i class="menu-icon mdi mdi-history"></i>
               <span class="menu-title">Riwayat Kondisi</span>
             </a>
           </li>
+          @endif
           @if (auth()->user()->role != 'anggota')
           <li class="nav-item {{ Request::segment(1) == 'history-kendaraan' ? "active" : ' '  }}">
             <a class="nav-link " href="{{ route('history.kendaraan') }}">

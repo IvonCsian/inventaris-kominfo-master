@@ -84,7 +84,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Nama Anggota</th>
                                     <th>Nomor Polisi</th>
                                     <th>Masa Berlaku STNK</th>

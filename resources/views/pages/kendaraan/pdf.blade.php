@@ -84,7 +84,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Nomor Polisi</th>
                                     <th>Kategori Kendaraan</th>
                                     <th>Status Kendaraan</th>
